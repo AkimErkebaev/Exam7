@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% load static %}
+{% block nav %}
+{% endblock %}
+{% block content %}
+    <h1>Проекты</h1>
+    <div class="row">
+        {% for choice in choices %}
+            <div class="col-12 col-md-6 col-lg-4">
+                <div class="card">
+                    <div class="card-body">
+                        <h3>{{ choice.name }}</h3>
+                        <h5 class="card-title">{{ choice.name }}</h5>
+                        <a href="{% url "update_choice" choice.pk %}">Изменить</a>
+                        <a href="{% url "delete_choice" choice.pk %}">Удалить</a>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+        {% if is_paginated %}
+            {% include "partial/pagination.html" %}
+        {% endif %}
+    </div>
+{% endblock %}

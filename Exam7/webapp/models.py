@@ -20,7 +20,7 @@ class Poll(models.Model):
 
 class Choice(models.Model):
     name = models.TextField(max_length=50, null=False, blank=False, verbose_name="Название")
-    status = models.ForeignKey("webapp.Poll", on_delete=models.CASCADE, related_name="polls",
+    poll = models.ForeignKey("webapp.Poll", on_delete=models.CASCADE, related_name="choices",
                                verbose_name='Вопрос')
 
     def __str__(self):

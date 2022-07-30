@@ -1,13 +1,13 @@
 {% extends "base.html" %}
 {% block nav %}
     <li class="nav-item">
-        <a class="nav-link" href="{% url "create_poll" %}">Создание вопроса</a>
-    </li>
-    <li class="nav-item">
         <a class="nav-link" href="{% url "update_poll" polls.pk %}">Редактировать</a>
     </li>
     <li class="nav-item">
         <a class="nav-link" href="{% url "delete_poll" polls.pk %}">Удалить</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" href="{% url "create_choice" polls.pk %}">Добавить ответ</a>
     </li>
 {% endblock %}
 
@@ -16,24 +16,14 @@
     <p>
         {{ polls.name }}
     </p>
-{#    <p>#}
-{#        {{ task.description }}#}
-{#    </p>#}
-{#    <p>#}
-{#        {{ task.status }}#}
-{#    </p>#}
-{#    <p>#}
-{#        {{ task.created_at }}#}
-{#    </p>#}
-{#    <p>#}
-{#        {{ type.updated_at }}#}
-{#    </p>#}
-{#    <h3>Типы</h3>#}
-{#    {% for type in task.types.all %}#}
-{#        <p>{{ type.name }}</p>#}
-{#    {% empty %}#}
-{#        <p>Типов нет</p>#}
-{#    {% endfor %}#}
+    <h3>Ответы</h3>
+    {% for choice in choices %}
+        <p>{{ choice.name }}</p>
+        <a href="{% url "update_choice" choice.pk %}">Изменить</a>
+        <a href="{% url "delete_choice" choice.pk %}">Удалить</a>
+    {% empty %}
+        <p>Ответов нет</p>
+    {% endfor %}
     <a href="{% url "index" %}">На главную</a>
     <div class="modal fade" id="pollDeleteModal" tabindex="-1" aria-labelledby="exampleModalLabel"
          aria-hidden="true">

@@ -13,3 +13,10 @@ class PollForm(forms.ModelForm):
         }
 
 
+class ChoiceForm(forms.ModelForm):
+    class Meta:
+        model = Choice
+        fields = ["name"]
+        widgets = {
+            "types": widgets.CheckboxSelectMultiple,
+        }

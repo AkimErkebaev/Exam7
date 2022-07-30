@@ -27,10 +27,10 @@ class CreatePoll(CreateView):
     template_name = "polls/create.html"
 
     def form_valid(self, form):
-        project = form.save(commit=False)
-        project.save()
+        poll = form.save(commit=False)
+        poll.save()
         form.save_m2m()
-        return redirect("poll_view", pk=project.pk)
+        return redirect("poll_view", pk=poll.pk)
 
 
 class UpdatePoll(UpdateView):
