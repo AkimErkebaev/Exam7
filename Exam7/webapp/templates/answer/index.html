@@ -9,16 +9,15 @@
     </li>
 {% endblock %}
 {% block content %}
-    <h1>Вопросы</h1>
+    <h1>Ответы</h1>
     <div class="row">
-        {% for poll in polls %}
+        {% for answer in answers %}
             <div class="col-12 col-md-6 col-lg-4">
                 <div class="card">
                     <div class="card-body">
-                        <h3>{{ poll.name }}</h3>
-                        <h5 class="card-title">{{ polls.name }}</h5>
-                        <a href="{% url "poll_view" poll.pk %}" class="card-link">Подробнее</a>
-                        <a href="{% url "create_answers" poll.pk %}" class="card-link">Пройти опрос</a>
+                        <h3>{{ answer.id }}</h3>
+                        <h3>{{ answer.choice }}</h3>
+                        <h5 class="card-title">{{ project.title }}</h5>
                     </div>
                 </div>
             </div>
