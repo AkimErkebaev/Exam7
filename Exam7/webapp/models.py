@@ -9,6 +9,9 @@ class Poll(models.Model):
     def __str__(self):
         return f"{self.id}. {self.name}"
 
+    def get_absolute_url(self):
+        return reverse("poll_view", kwargs={"pk": self.pk})
+
     class Meta:
         db_table = "polls"
         verbose_name = "Вопрос"

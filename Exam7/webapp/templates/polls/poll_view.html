@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+{% block nav %}
+    <li class="nav-item">
+        <a class="nav-link" href="{% url "create_poll" %}">Создание вопроса</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" href="{% url "update_poll" polls.pk %}">Редактировать</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" href="{% url "delete_poll" polls.pk %}">Удалить</a>
+    </li>
+{% endblock %}
+
+{% block content %}
+
+    <p>
+        {{ polls.name }}
+    </p>
+{#    <p>#}
+{#        {{ task.description }}#}
+{#    </p>#}
+{#    <p>#}
+{#        {{ task.status }}#}
+{#    </p>#}
+{#    <p>#}
+{#        {{ task.created_at }}#}
+{#    </p>#}
+{#    <p>#}
+{#        {{ type.updated_at }}#}
+{#    </p>#}
+{#    <h3>Типы</h3>#}
+{#    {% for type in task.types.all %}#}
+{#        <p>{{ type.name }}</p>#}
+{#    {% empty %}#}
+{#        <p>Типов нет</p>#}
+{#    {% endfor %}#}
+    <a href="{% url "index" %}">На главную</a>
+    <div class="modal fade" id="pollDeleteModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+         aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="pollDeleteModal">Modal title</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    Вы уверены что хотите удалить статью {{ polls.name }}?
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <form action="{% url "delete_poll" polls.pk %}" method="post">
+                        {% csrf_token %}
+                        <button type="submit">Да</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
